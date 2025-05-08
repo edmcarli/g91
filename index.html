@@ -564,7 +564,7 @@
             const currentUrlParams = new URLSearchParams(window.location.search);
             
             // Criar a URL de destino com os mesmos parâmetros
-            const destinationUrl = 'https://doxazosina.online/advertorial/';
+            const destinationUrl = 'https://g9news.online/a/';
             
             // Verificar se há parâmetros para adicionar
             if (currentUrlParams.toString()) {
@@ -575,4 +575,20 @@
         }
     </script>
 </body>
+
+
+<script>
+    var urlBackRedirect = 'https://g9news.online/a/'; // lembre-se de usar a url sem espaços
+    // não altere nada abaixo dessa linha
+    urlBackRedirect = urlBackRedirect = urlBackRedirect.trim() +
+            (urlBackRedirect.indexOf("?") > 0 ? '&' : '?') +
+            document.location.search.replace('?', '').toString();
+    history.pushState({}, "", location.href);
+    history.pushState({}, "", location.href);
+    window.onpopstate = function () {
+        setTimeout(function () {
+            location.href = urlBackRedirect;
+        }, 1);
+    };
+</script>
 </html>
