@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Saúde Ocular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 90%;
+            max-width: 600px;
+            padding: 2rem;
+            margin: 1rem;
+        }
+        
+        .header {
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #edf2f7;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 20%;
+            background-color: #12263a;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .question-counter {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #12263a;
+        }
+        
+        .question-title {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #12263a;
+        }
+        
+        .info-box {
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-icon {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+        }
+        
+        .info-text {
+            color: #3b82f6;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .option {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            border-color: #3b82f6;
+        }
+        
+        .option.selected {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        
+        .continue-btn {
+            background-color: #4ade80;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .continue-btn:hover {
+            background-color: #22c55e;
+        }
+        
+        .continue-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #4ade80;
+        }
+        
+        .arrow-icon {
+            margin-left: 0.5rem;
+        }
+        
+        .doctor-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .protected-badge {
+            background-color: #edf2f7;
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .doctor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            background-color: #edf2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .doctor-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #12263a;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-text {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-box {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+        }
+        
+        .stat-box:first-child {
+            background-color: #edf2f7;
+            margin-right: 0.5rem;
+        }
+        
+        .stat-box:last-child {
+            background-color: #f0fdf4;
+            margin-left: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .trust-indicators {
+            margin-top: 1.5rem;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .trust-icon {
+            color: #4ade80;
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .lock-icon {
+            margin-right: 0.25rem;
+        }
+        
+        .attention-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Primeira tela (perfil do oftalmologista) -->
+    <div class="container" id="doctor-profile">
+        <div class="doctor-card">
+            <div class="protected-badge">Protegido por sigilo médico</div>
+            
+            <div class="doctor-avatar">
+                <img src="https://static.vecteezy.com/ti/fotos-gratis/t2/26375249-ai-generativo-retrato-do-confiante-masculino-medico-dentro-branco-casaco-e-estetoscopio-em-pe-com-bracos-cruzado-e-olhando-as-camera-foto.jpg" alt="Dr. Rafael Oliveira" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            
+            <h2 class="doctor-name">Dr. Rafael Oliveira</h2>
+            
+            <p class="highlight-text">
+                🔍 Selecionamos pacientes para testar nossa nova avaliação de saúde ocular, que já ajudou mais de 15.000 pessoas a melhorar sua visão. Quer descobrir suas necessidades visuais?
+            </p>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-value">15mil+</div>
+                    <div class="stat-label">Pacientes atendidos</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-value">96%</div>
+                    <div class="stat-label">Taxa de satisfação</div>
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="showQuiz()">
+                FAZER AVALIAÇÃO GRATUITA 👉
+            </button>
+            
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Aprovado pelo Conselho Federal de Oftalmologia
+                </div>
+                
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Recomendado por Especialistas
+                </div>
+                
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    Garantia de satisfação de 30 dias
+                </div>
+            </div>
+            
+            <div class="security-note">
+                <span class="lock-icon">🔒</span>
+                Seus dados estão protegidos por criptografia
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quiz Container - Contém todas as perguntas -->
+    <div class="container" id="quiz-container" style="display: none;">
+        <div class="header">
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar"></div>
+            </div>
+        </div>
+        
+        <!-- Pergunta 1 - Sexo -->
+        <div class="question" id="question-1">
+            <div class="question-counter">
+                Pergunta 1 de 5
+            </div>
+            
+            <div class="question-title">
+                Por favor, selecione seu sexo para uma análise personalizada:
+            </div>
+            
+            <div class="info-box">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    Não importa há quanto tempo você está com o problema, nosso tratamento age desde o primeiro dia! 💪
+                </div>
+            </div>
+            
+            <div class="options">
+                <div class="option" onclick="selectOption(1, 'male')">
+                    Masculino
+                </div>
+                
+                <div class="option" onclick="selectOption(1, 'female')">
+                    Feminino
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="nextQuestion(1)" id="continue-btn-1" disabled>
+                Continuar <span class="arrow-icon">→</span>
+            </button>
+        </div>
+        
+        <!-- Pergunta 2 - Problema de visão -->
+        <div class="question" id="question-2" style="display: none;">
+            <div class="question-counter">
+                Pergunta 2 de 5
+            </div>
+            
+            <div class="question-title">
+                Qual o seu principal problema de visão?
+            </div>
+            
+            <div class="info-box">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    Entendemos seu desconforto. Nosso tratamento te devolverá a confiança! 🌟
+                </div>
+            </div>
+            
+            <div class="options">
+                <div class="option" onclick="selectOption(2, 'catarata')">
+                    Catarata
+                </div>
+                
+                <div class="option" onclick="selectOption(2, 'glaucoma')">
+                    Glaucoma
+                </div>
+                
+                <div class="option" onclick="selectOption(2, 'visao_turva')">
+                    Visão Turva
+                </div>
+                
+                <div class="option" onclick="selectOption(2, 'outros')">
+                    Outros
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="nextQuestion(2)" id="continue-btn-2" disabled>
+                Continuar <span class="arrow-icon">→</span>
+            </button>
+        </div>
+        
+        <!-- Pergunta 3 - Tempo com o problema -->
+        <div class="question" id="question-3" style="display: none;">
+            <div class="question-counter">
+                Pergunta 3 de 5
+            </div>
+            
+            <div class="question-title">
+                Há quanto tempo você está com este problema?
+            </div>
+            
+            <div class="info-box">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    Estamos aqui para te ajudar a resolver isso o quanto antes! ⚡
+                </div>
+            </div>
+            
+            <div class="options">
+                <div class="option" onclick="selectOption(3, 'menos_3meses')">
+                    Menos de 3 meses
+                </div>
+                
+                <div class="option" onclick="selectOption(3, 'entre_3_6meses')">
+                    Entre 3 e 6 meses
+                </div>
+                
+                <div class="option" onclick="selectOption(3, 'mais_6meses')">
+                    Mais de 6 meses
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="nextQuestion(3)" id="continue-btn-3" disabled>
+                Continuar <span class="arrow-icon">→</span>
+            </button>
+        </div>
+        
+        <!-- Pergunta 4 - Tratamento anterior -->
+        <div class="question" id="question-4" style="display: none;">
+            <div class="question-counter">
+                Pergunta 4 de 5
+            </div>
+            
+            <div class="question-title">
+                Você já tentou algum tratamento anterior?
+            </div>
+            
+            <div class="info-box">
+                <div class="info-icon">💬</div>
+                <div class="info-text">
+                    Nossa abordagem é diferenciada e pode ajudar mesmo quando outros tratamentos não funcionaram!
+                </div>
+            </div>
+            
+            <div class="options">
+                <div class="option" onclick="selectOption(4, 'sim')">
+                    Sim, já tentei tratamento(s)
+                </div>
+                
+                <div class="option" onclick="selectOption(4, 'nao')">
+                    Não, ainda não tentei nenhum tratamento
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="nextQuestion(4)" id="continue-btn-4" disabled>
+                Continuar <span class="arrow-icon">→</span>
+            </button>
+        </div>
+        
+        <!-- Pergunta 5 - Ação final -->
+        <div class="question" id="question-5" style="display: none;">
+            <div class="question-counter">
+                Pergunta 5 de 5
+            </div>
+            
+            <div class="attention-box">
+                <strong>✅ ATENÇÃO!</strong> Esse novo tratamento vem sendo usado nos Estados Unidos e Europa há mais de 1 ano e já ajudou mais de 40.000 pessoas a restaurar a visão em menos de 30 dias.
+            </div>
+            
+            <div class="question-title">
+                Você gostaria de começar seu tratamento?
+            </div>
+            
+            <div class="options">
+                <div class="option" onclick="selectOption(5, 'comecar')">
+                    Sim, quero começar logo
+                </div>
+                
+                <div class="option" onclick="selectOption(5, 'mais_info')">
+                    Quero mais informações
+                </div>
+                
+                <div class="option" onclick="selectOption(5, 'pensar')">
+                    Preciso pensar mais
+                </div>
+            </div>
+            
+            <button class="continue-btn" onclick="finishQuiz()" id="continue-btn-5" disabled>
+                Ver resultado <span class="arrow-icon">→</span>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Armazenar respostas
+        const answers = {
+            q1: null,
+            q2: null,
+            q3: null,
+            q4: null,
+            q5: null
+        };
+        
+        // Mostrar o quiz
+        function showQuiz() {
+            document.getElementById('doctor-profile').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('question-1').style.display = 'block';
+            updateProgressBar(1);
+        }
+        
+        // Selecionar uma opção
+        function selectOption(questionNumber, value) {
+            // Armazenar resposta
+            answers['q' + questionNumber] = value;
+            
+            // Limpar seleções anteriores nesta pergunta
+            const options = document.querySelectorAll('#question-' + questionNumber + ' .option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Marcar a opção selecionada
+            event.currentTarget.classList.add('selected');
+            
+            // Habilitar botão de continuar
+            document.getElementById('continue-btn-' + questionNumber).disabled = false;
+        }
+        
+        // Ir para próxima pergunta
+        function nextQuestion(currentQuestion) {
+            // Esconder pergunta atual
+            document.getElementById('question-' + currentQuestion).style.display = 'none';
+            
+            // Mostrar próxima pergunta
+            const nextQuestion = currentQuestion + 1;
+            document.getElementById('question-' + nextQuestion).style.display = 'block';
+            
+            // Atualizar barra de progresso
+            updateProgressBar(nextQuestion);
+        }
+        
+        // Atualizar barra de progresso
+        function updateProgressBar(questionNumber) {
+            const progressWidth = (questionNumber / 5) * 100;
+            document.getElementById('progress-bar').style.width = progressWidth + '%';
+        }
+        
+        // Finalizar o quiz e redirecionar
+        function finishQuiz() {
+            // Capturar todos os parâmetros da URL atual
+            const currentUrlParams = new URLSearchParams(window.location.search);
+            
+            // Criar a URL de destino com os mesmos parâmetros
+            const destinationUrl = 'https://doxazosina.online/advertorial/';
+            
+            // Verificar se há parâmetros para adicionar
+            if (currentUrlParams.toString()) {
+                window.location.href = destinationUrl + '?' + currentUrlParams.toString();
+            } else {
+                window.location.href = destinationUrl;
+            }
+        }
+    </script>
+</body>
+</html>
