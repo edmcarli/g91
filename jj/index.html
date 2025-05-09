@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECTHA - Automação com IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26,26,46,0.03) 0%, rgba(255,255,255,1) 100%);
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .client-logo {
+            filter: grayscale(100%) contrast(0.2);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%) contrast(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white py-6 px-4 sm:px-6 lg:px-8 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a1a2e" class="w-8 h-8 mr-2">
+                    <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.176 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152-.082A9 9 0 1015.68 4.533a7.46 7.46 0 01-2.717-2.247zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.546 3.75 3.75 0 013.255 3.718z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-xl font-semibold text-gray-900">ECTHA</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#servicos" class="text-gray-600 hover:text-gray-900 font-medium">Serviços</a>
+                <a href="#funcionamento" class="text-gray-600 hover:text-gray-900 font-medium">Como funciona</a>
+                <a href="#clientes" class="text-gray-600 hover:text-gray-900 font-medium">Clientes</a>
+                <a href="#contato" class="text-gray-600 hover:text-gray-900 font-medium">Contato</a>
+            </div>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                    Automatize seu funil de vendas com IA treinada para <span class="text-blue-800">conversar e converter</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                    Agentes inteligentes que prospectam, qualificam leads, dão suporte e fazem follow-ups automáticos - 24 horas por dia, 7 dias por semana.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#demonstracao" class="bg-blue-800 hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition duration-300 shadow-md">
+                        Solicite uma demonstração
+                    </a>
+                    <a href="#servicos" class="border border-gray-300 hover:border-gray-400 text-gray-700 font-medium py-3 px-8 rounded-lg transition duration-300">
+                        Conheça nossos serviços
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-robot text-blue-800"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Agente ECTHA</h4>
+                            <p class="text-xs text-gray-500">Online agora</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-gray-100 p-4 rounded-lg max-w-xs">
+                            <p class="text-gray-800">Olá! Sou o assistente de IA da ECTHA. Posso ajudar a qualificar seus leads agora mesmo. Posso perguntar sobre seu negócio?</p>
+                        </div>
+                        <div class="flex justify-end">
+                            <div class="bg-blue-800 text-white p-4 rounded-lg max-w-xs">
+                                <p>Claro! Tenho uma empresa de software que precisa aumentar as vendas.</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg max-w-xs">
+                            <p class="text-gray-800">Ótimo! Quantos leads você gostaria que eu qualificasse por mês? Podemos começar com 100, 500 ou até 1.000+.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <input type="text" placeholder="Digite sua mensagem..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-100 rounded-full opacity-20 -z-10"></div>
+                <div class="absolute -top-6 -right-6 w-40 h-40 bg-blue-100 rounded-full opacity-20 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Soluções inteligentes para cada etapa do seu funil</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Nossos agentes de IA são especializados em diferentes funções para automatizar todo o processo de vendas e atendimento.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-blue-800 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Prospecção Inteligente</h3>
+                    <p class="text-gray-600">
+                        Identificamos e qualificamos leads automaticamente com base no seu público-alvo ideal, economizando horas de trabalho manual.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-blue-800 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Atendimento 24/7</h3>
+                    <p class="text-gray-600">
+                        Nossos agentes conversam com seus clientes em qualquer horário, respondendo perguntas e resolvendo problemas comuns.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-md transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-blue-800 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Follow-up Automático</h3>
+                    <p class="text-gray-600">
+                        Sistemas inteligentes que acompanham leads frios, reativam clientes inativos e aumentam significativamente suas conversões.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="funcionamento" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Como funciona a automação com IA</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Implementamos sua solução em 3 etapas simples, com suporte completo da nossa equipe.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="step-card bg-white p-8 rounded-xl border border-gray-100 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-blue-800 text-white rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                        <h3 class="text-xl font-semibold text-gray-900">Entendimento</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Analisamos seu negócio, processos e objetivos para criar uma solução personalizada.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Mapeamento do funil de vendas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Definição de personas e jornadas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Integrações com seus sistemas</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step-card bg-white p-8 rounded-xl border border-gray-100 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-blue-800 text-white rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                        <h3 class="text-xl font-semibold text-gray-900">Configuração</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Treinamos os agentes de IA com seu tom de voz, produtos e processos específicos.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Treinamento dos modelos de linguagem</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Configuração de fluxos conversacionais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Testes e ajustes finos</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step-card bg-white p-8 rounded-xl border border-gray-100 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-blue-800 text-white rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                        <h3 class="text-xl font-semibold text-gray-900">Escala</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Implementamos e monitoramos os resultados, ajustando continuamente para melhor performance.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Lançamento controlado</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Relatórios de desempenho</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-800 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Otimizações contínuas</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section id="clientes" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Empresas que escalaram com a ECTHA</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    De startups a grandes empresas, nossos agentes de IA estão transformando vendas e atendimento.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="client-logo flex justify-center">
+                    <img src="https://via.placeholder.com/160x80?text=Empresa+A" alt="Empresa A" class="h-12 object-contain">
+                </div>
+                <div class="client-logo flex justify-center">
+                    <img src="https://via.placeholder.com/160x80?text=Empresa+B" alt="Empresa B" class="h-12 object-contain">
+                </div>
+                <div class="client-logo flex justify-center">
+                    <img src="https://via.placeholder.com/160x80?text=Empresa+C" alt="Empresa C" class="h-12 object-contain">
+                </div>
+                <div class="client-logo flex justify-center">
+                    <img src="https://via.placeholder.com/160x80?text=Empresa+D" alt="Empresa D" class="h-12 object-contain">
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gray-50 rounded-xl p-8 md:p-12">
+                <div class="max-w-4xl mx-auto text-center">
+                    <i class="fas fa-quote-left text-blue-800 text-3xl opacity-30 mb-6"></i>
+                    <p class="text-xl text-gray-700 mb-8">
+                        "A ECTHA transformou nosso processo de vendas. Em 3 meses, reduzimos o tempo de qualificação de leads em 80% e aumentamos nossas conversões em 40%. A IA realmente entende nosso negócio e fala com nossos clientes como um membro da equipe."
+                    </p>
+                    <div class="flex items-center justify-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="CEO Empresa" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-gray-900">Ana Silva</h4>
+                            <p class="text-sm text-gray-600">CEO na Empresa A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="demonstracao" class="py-20 px-4 sm:px-6 lg:px-8 bg-blue-800 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Pronto para automatizar seu funil de vendas?</h2>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                    Agende uma demonstração personalizada e veja como nossos agentes de IA podem transformar seus resultados.
+                </p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl p-8 shadow-lg">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
+                            <input type="text" id="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+                            <input type="text" id="empresa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                            <input type="tel" id="telefone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mensagem" class="block text-sm font-medium text-gray-700 mb-1">Como podemos ajudar?</label>
+                        <textarea id="mensagem" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-blue-800 hover:bg-blue-900 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md">
+                            Solicitar demonstração
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 mr-2 text-blue-400">
+                            <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.176 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152-.082A9 9 0 1015.68 4.533a7.46 7.46 0 01-2.717-2.247zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.546 3.75 3.75 0 013.255 3.718z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-xl font-semibold">ECTHA</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Transformando vendas e atendimento com inteligência artificial conversacional.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Serviços</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Prospecção com IA</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Atendimento Automatizado</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Follow-up Inteligente</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Integrações Personalizadas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Recursos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Casos de Uso</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Documentação</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contato</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Av. Paulista, 1000 - São Paulo, SP</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="
+</html>
