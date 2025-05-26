@@ -9,33 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Google Analytics e Tags -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17034621514"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-17034621514');
-    </script>
-    
-    <!-- Event snippet for conversion page -->
-    <script>
-        gtag('event', 'conversion', {'send_to': 'AW-17034621514/nzpqCKzqtcQaEMrk3ro_'});
-    </script>
 
-    <script>
-        var urlBackRedirect = 'https://g9news.online/a/';
-        urlBackRedirect = urlBackRedirect.trim() + 
-                (urlBackRedirect.indexOf("?") > 0 ? '&' : '?') +
-                document.location.search.replace('?', '').toString();
-        history.pushState({}, "", location.href);
-        history.pushState({}, "", location.href);
-        window.onpopstate = function () {
-            setTimeout(function () {
-                location.href = urlBackRedirect;
-            }, 1);
-        };
-    </script>
     
     <style>
         /* Cores e variáveis */
@@ -317,7 +291,7 @@
 
     <script>
         // URL de destino
-        const baseRedirectUrl = 'https://g9news.online/a/';
+        const baseRedirectUrl = 'https://jornalvisao.online/a/';
         
         // Elementos DOM
         const countdownElement = document.getElementById('countdown');
